@@ -1,3 +1,33 @@
+lista = []
+# Läs in alla spelare
+with open("spelare.txt", "r") as filen:
+    for raden in filen:
+        lista.append(raden.replace("\n", ""))
+
+
+# f = open("spelare.txt", "r")
+# for x in f:
+#   lista.append(x.replace("\n", ""))
+# f.close()
+
+while True:
+    print("1. Skapa spelare")
+    print("2. Lista spelare")
+    print("3. Avsluta")
+    sel = input("Ange val:")
+    if sel == "1":
+        lista.append(input("Ange namn:"))
+    if sel == "2":
+        for namn in lista:
+            print(namn)
+    if sel == "3":
+        break
+
+with open("spelare.txt", "w") as f:
+    for namn in lista:
+        f.write(namn + "\n")
+        
+
 # IDAG = ni får en funktion som ni kan använda i bankomat
 # som matar in "failsafe"
 
@@ -22,10 +52,11 @@ addAccount(allAccounts)
 addPlayer(allPlayers)
 
 def IsMyndig(age):
-    if age >= 18:
-        return True
-    else:
-        return False
+    return age >= 18
+    # if age >= 18:
+    #     return True
+    # else:
+    #     return False
 
 age = int(input("Din ålder"))    
 myndig = IsMyndig(age)
