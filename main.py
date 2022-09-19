@@ -1,6 +1,12 @@
 # IDAG = ni får en funktion som ni kan använda i bankomat
 # som matar in "failsafe"
 
+# felinmatning
+# namngivna parametrar
+# typehinting
+
+
+
 print("Hej hej")
 
 def GetIntMenuInput(prompt, minValue, maxValue):
@@ -25,6 +31,27 @@ def PrintMeny(languageCode):
         print("4. Select language")
 
 
+
+print("Programmet börjar")
+lang = input("Vilket språk vill du köra på - SV/EN?")
+while True:
+    PrintMeny(lang)
+    sel = GetIntMenuInput("Ange val:",1,4)
+    if sel == 4:
+        lang = input("Vilket språk vill du köra på - SV/EN?")
+    if sel == 1:
+        print("1. Skapa en bra spelare")
+        print("2. Skapa en dålig spelare")
+        sel = GetIntMenuInput("Ange spelartyp:", 1,2)
+
+print("Programmet slutar")
+
+
+
+
+
+
+
 # TVÅ STÄLLEN I RAMMINNET DÄR VARIABLER LAGRAS
 # stack
 # heap
@@ -47,22 +74,6 @@ lista = [12,13]
 print(lista)
 addToList(lista)
 print(lista)
-
-
-print("Programmet börjar")
-lang = input("Vilket språk vill du köra på - SV/EN?")
-while True:
-    PrintMeny(lang)
-    sel = GetIntMenuInput("Ange val:",1,4)
-    if sel == 4:
-        lang = input("Vilket språk vill du köra på - SV/EN?")
-    if sel == 1:
-        print("1. Skapa en bra spelare")
-        print("2. Skapa en dålig spelare")
-        sel = GetIntMenuInput("Ange spelartyp:", 1,2)
-
-print("Programmet slutar")
-
 
 
 
