@@ -34,13 +34,17 @@ def PrintMeny(languageCode):
         print("3. Exit")
         print("4. Select language")
 
+def theCalculation(a,b,c,d,e,f=2022,g=1,h=2,lang="SV"):
+    pass
 
+theCalculation(12,34,667,134556,7)
 
 print("Programmet börjar")
 lang = input("Vilket språk vill du köra på - SV/EN?")
 while True:
     PrintMeny(lang)
-    sel = GetIntMenuInput("Ange val:",1,4)
+    #sel = GetIntMenuInput(prompt="Ange val:", minValue=1,maxValue=4)
+    sel = GetIntMenuInput("Ange val:", 1,4)
     if sel == 4:
         lang = input("Vilket språk vill du köra på - SV/EN?")
     if sel == 1:
