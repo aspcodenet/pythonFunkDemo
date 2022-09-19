@@ -3,7 +3,8 @@
 
 # felinmatning
 # namngivna parametrar
-# typehinting
+# default parameter
+# LABBA
 
 
 
@@ -11,11 +12,14 @@ print("Hej hej")
 
 def GetIntMenuInput(prompt, minValue, maxValue):
     while True:
-        sel = int(input(prompt))
-        if sel < minValue or sel > maxValue:
-            print(f"Mata in ett tal mellan {minValue} och {maxValue} tack")
-        else:
-            break
+        try:
+            sel = int(input(prompt))
+            if sel < minValue or sel > maxValue:
+                print(f"Mata in ett tal mellan {minValue} och {maxValue} tack")
+            else:
+                break
+        except:
+            print("Mata in ett tal tack")
     return sel
 
 def PrintMeny(languageCode):
