@@ -1,4 +1,6 @@
-# anripa funktion från funktion
+
+
+# anropa funktion från funktion
 # submeny och 4 = tillbaka till huvudmenyn
 
 # FUNKTION ett kodblock som vi ger ett namn
@@ -20,6 +22,19 @@
 # alder = int(input("Ange ålder"))
 # lonen2 = calculateSalary(10000,alder )
 # print("Klar")
+
+def GetIntMenuInput(prompt, minValue, maxValue):
+    while True:
+        try:
+            sel = int(input(prompt))
+            if sel < minValue or sel > maxValue:
+                print(f"Mata in ett tal mellan {minValue} och {maxValue} tack")
+            else:
+                break
+        except:
+            print("Mata in ett tal tack")
+    return sel
+
 
 def CreatePlayer(): # black box - kommer ut ut den så ska vi ha en ny player (namn - string)
     while True:
@@ -177,17 +192,7 @@ res = Plussa("God ", t)
 
 print("Hej hej")
 
-def GetIntMenuInput(prompt, minValue, maxValue):
-    while True:
-        try:
-            sel = int(input(prompt))
-            if sel < minValue or sel > maxValue:
-                print(f"Mata in ett tal mellan {minValue} och {maxValue} tack")
-            else:
-                break
-        except:
-            print("Mata in ett tal tack")
-    return sel
+
 
 def PrintMeny(languageCode):
     if languageCode == "SV":
