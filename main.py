@@ -59,20 +59,29 @@ def DeletePlayer(listOfPlayer):
 
 
 def ChangePlayer(listOfPlayer):
-    index = 1
-    for playerName in listOfPlayer:
-        print(f"{index} {playerName}")
-        index = index + 1
-    #sel = int(input("Ange spelare att ändra namn på"))
-    sel = GetIntMenuInput("Ange spelare att ändra namn på:",1, len(listOfPlayer))
+    while True:
+        print(" *** PLAYER MENU *** ")
+        print("1. Ändra namn")
+        print("2. Ändra jersey")
+        print("3. Tillbaka till huvudmenyn")
+        sel = GetIntMenuInput("Ange val:", 1, 3)
+        if sel == 1:
+            index = 1
+            for playerName in listOfPlayer:
+                print(f"{index} {playerName}")
+                index = index + 1
+            sel = GetIntMenuInput("Ange spelare att ändra namn på:",1, len(listOfPlayer))
 
-    namn = input("Ange nytt namn")
-    listOfPlayer[sel-1] = namn
-
+            namn = input("Ange nytt namn")
+            listOfPlayer[sel-1] = namn
+        elif sel == 2:
+            print("To be implemented")
+        elif sel == 3:
+            return          
 
 
 # ibland så returnerar INTE en funktion nånting
-def HuvudMenyInput():        
+def HuvudMenyInput(lista):        
     while True:
         print("1. Skapa spelare")
         print("2. Lista spelare")
@@ -100,15 +109,7 @@ with open("spelare.txt", "r") as filen:
     for raden in filen:
         lista.append(raden.replace("\n", ""))
 
-
-# f = open("spelare.txt", "r")
-# for x in f:
-#   lista.append(x.replace("\n", ""))
-# f.close()
-# BYGGA CRUD - funktioner
-# nedan = huvudmenyn
-# 4 Ändra spelare -> NYMENY
-HuvudMenyInput()
+HuvudMenyInput(lista)
 
 with open("spelare.txt", "w") as f:
     for namn in lista:
