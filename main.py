@@ -1,3 +1,38 @@
+
+# FUNKTION ett kodblock som vi ger ett namn
+# en funktion kan TA IN PARAMETRAR
+# return  
+
+# def calculateSalary(monthly, age):
+#     extra = 0
+#     if age > 65:
+#         extra = 1.1
+#     if age < 20:
+#         extra = 1.3
+#     salary = extra * monthly
+#     return salary
+
+
+# print("Innan")
+# lonen = calculateSalary(10000, 68)
+# alder = int(input("Ange ålder"))
+# lonen2 = calculateSalary(10000,alder )
+# print("Klar")
+
+def CreatePlayer(): # black box - kommer ut ut den så ska vi ha en ny player (namn - string)
+    while True:
+        namn = input("Ange namn:")
+        if len(namn) < 2 or len(namn) > 50:
+            print("Ange ett namn mellan 3 och 50 tecken")
+        else:
+            break
+    return namn
+    
+def ListPlayers(listOfPlayers):    
+    for namn in listOfPlayers:
+        print(namn)
+
+
 lista = []
 # Läs in alla spelare
 with open("spelare.txt", "r") as filen:
@@ -9,18 +44,22 @@ with open("spelare.txt", "r") as filen:
 # for x in f:
 #   lista.append(x.replace("\n", ""))
 # f.close()
-
+# BYGGA CRUD - funktioner
+# nedan = huvudmenyn
+# 4 Ändra spelare -> NYMENY
 while True:
     print("1. Skapa spelare")
     print("2. Lista spelare")
-    print("3. Avsluta")
+    print("3. Ändra spelare")
+    print("4. Ta bort spelare")
+    print("5. Avsluta")
     sel = input("Ange val:")
     if sel == "1":
-        lista.append(input("Ange namn:"))
+        namn = CreatePlayer()
+        lista.append(namn)
     if sel == "2":
-        for namn in lista:
-            print(namn)
-    if sel == "3":
+        ListPlayers(lista)
+    if sel == "5":
         break
 
 with open("spelare.txt", "w") as f:
