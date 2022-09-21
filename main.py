@@ -1,3 +1,5 @@
+# anripa funktion från funktion
+# submeny och 4 = tillbaka till huvudmenyn
 
 # FUNKTION ett kodblock som vi ger ett namn
 # en funktion kan TA IN PARAMETRAR
@@ -32,6 +34,34 @@ def ListPlayers(listOfPlayers):
     for namn in listOfPlayers:
         print(namn)
 
+def DeletePlayer(listOfPlayer):
+    index = 1
+    for playerName in listOfPlayer:
+        print(f"{index} {playerName}")
+        index = index + 1
+    sel = int(input("Ange spelare att ta bort"))
+    del listOfPlayer[sel-1]
+
+
+def ChangePlayer(listOfPlayer):
+    index = 1
+    for playerName in listOfPlayer:
+        print(f"{index} {playerName}")
+        index = index + 1
+    sel = int(input("Ange spelare att ändra namn på"))
+    namn = input("Ange nytt namn")
+    listOfPlayer[sel-1] = namn
+
+
+
+
+def PrintHuvudMeny():        
+    print("1. Skapa spelare")
+    print("2. Lista spelare")
+    print("3. Ändra spelare")
+    print("4. Ta bort spelare")
+    print("5. Avsluta")
+
 
 lista = []
 # Läs in alla spelare
@@ -48,17 +78,18 @@ with open("spelare.txt", "r") as filen:
 # nedan = huvudmenyn
 # 4 Ändra spelare -> NYMENY
 while True:
-    print("1. Skapa spelare")
-    print("2. Lista spelare")
-    print("3. Ändra spelare")
-    print("4. Ta bort spelare")
-    print("5. Avsluta")
+    PrintHuvudMeny()
     sel = input("Ange val:")
     if sel == "1":
         namn = CreatePlayer()
         lista.append(namn)
     if sel == "2":
         ListPlayers(lista)
+    if sel == "4":
+        DeletePlayer(lista)
+    if sel == "3":
+        ChangePlayer(lista)
+        pass
     if sel == "5":
         break
 
