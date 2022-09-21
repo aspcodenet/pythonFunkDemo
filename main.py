@@ -1,6 +1,37 @@
+#Write a program that joins two text files and records the results in a third file. PS:
+#first delete the third file if if already exists!
+
+fil1 = "spelare.txt"
+fil2 = "spelare2.txt"
+resultFile = "total.txt"
+
+with open(resultFile, "w") as resultFile:
+    with open(fil1, "r") as fil1:
+        for raden in fil1:
+            resultFile.write(  raden.replace("\n", "") + "\n")            
+    with open(fil2, "r") as fil2:
+        for raden in fil2:
+            resultFile.write(raden.replace("\n", "") + "\n")            
+
+print("sdffssd")
+
+# Läs in alla spelare
+with open("spelare.txt", "r") as filen:
+    isOnOddLine = True
+    for raden in filen:
+        if isOnOddLine:
+            print(raden)
+        # isOnOddLine = not isOnOddLine
+        if isOnOddLine:
+            isOnOddLine = False
+        else:
+            isOnOddLine = True
+        
+
+
 x = 12
 if x > 10:
-    print("bla bla")
+    print("bla bl223a")
 print("234234")    
 
 for x in range(0,5):
