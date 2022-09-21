@@ -1,4 +1,12 @@
+x = 12
+if x > 10:
+    print("bla bla")
+print("234234")    
 
+for x in range(0,5):
+    if x > 10:
+        print("sdfrsdsdffsd")
+    print(x)
 
 
 
@@ -114,6 +122,9 @@ lista = []
 with open("spelare.txt", "r") as filen:
     for raden in filen:
         lista.append(raden.replace("\n", ""))
+
+
+
 
 HuvudMenyInput(lista)
 
