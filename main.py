@@ -1,5 +1,8 @@
 
 
+
+
+
 # anropa funktion från funktion
 # submeny och 4 = tillbaka till huvudmenyn
 
@@ -80,14 +83,17 @@ def ChangePlayer(listOfPlayer):
             return          
 
 
+def MenuPrint():
+    print("1. Skapa spelare")
+    print("2. Lista spelare")
+    print("3. Ändra spelare")
+    print("4. Ta bort spelare")
+    print("5. Avsluta")
 # ibland så returnerar INTE en funktion nånting
+
 def HuvudMenyInput(lista):        
     while True:
-        print("1. Skapa spelare")
-        print("2. Lista spelare")
-        print("3. Ändra spelare")
-        print("4. Ta bort spelare")
-        print("5. Avsluta")
+        MenuPrint()
         sel = GetIntMenuInput("Ange val:", 1, 5)
         if sel == 1:
             namn = CreatePlayer()
