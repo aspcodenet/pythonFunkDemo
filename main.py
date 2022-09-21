@@ -54,7 +54,7 @@ def DeletePlayer(listOfPlayer):
     for playerName in listOfPlayer:
         print(f"{index} {playerName}")
         index = index + 1
-    sel = int(input("Ange spelare att ta bort"))
+    sel = GetIntMenuInput("Ange spelare att ta bort:",1, len(listOfPlayer))
     del listOfPlayer[sel-1]
 
 
@@ -63,22 +63,38 @@ def ChangePlayer(listOfPlayer):
     for playerName in listOfPlayer:
         print(f"{index} {playerName}")
         index = index + 1
-    sel = int(input("Ange spelare att ändra namn på"))
+    #sel = int(input("Ange spelare att ändra namn på"))
+    sel = GetIntMenuInput("Ange spelare att ändra namn på:",1, len(listOfPlayer))
+
     namn = input("Ange nytt namn")
     listOfPlayer[sel-1] = namn
 
 
 
-
-def PrintHuvudMeny():        
-    print("1. Skapa spelare")
-    print("2. Lista spelare")
-    print("3. Ändra spelare")
-    print("4. Ta bort spelare")
-    print("5. Avsluta")
+# ibland så returnerar INTE en funktion nånting
+def HuvudMenyInput():        
+    while True:
+        print("1. Skapa spelare")
+        print("2. Lista spelare")
+        print("3. Ändra spelare")
+        print("4. Ta bort spelare")
+        print("5. Avsluta")
+        sel = GetIntMenuInput("Ange val:", 1, 5)
+        if sel == 1:
+            namn = CreatePlayer()
+            lista.append(namn)
+        if sel == 2:
+            ListPlayers(lista)
+        if sel == 4:
+            DeletePlayer(lista)
+        if sel == 3:
+            ChangePlayer(lista)
+        if sel == 5:
+            break
 
 
 lista = []
+
 # Läs in alla spelare
 with open("spelare.txt", "r") as filen:
     for raden in filen:
@@ -92,21 +108,7 @@ with open("spelare.txt", "r") as filen:
 # BYGGA CRUD - funktioner
 # nedan = huvudmenyn
 # 4 Ändra spelare -> NYMENY
-while True:
-    PrintHuvudMeny()
-    sel = input("Ange val:")
-    if sel == "1":
-        namn = CreatePlayer()
-        lista.append(namn)
-    if sel == "2":
-        ListPlayers(lista)
-    if sel == "4":
-        DeletePlayer(lista)
-    if sel == "3":
-        ChangePlayer(lista)
-        pass
-    if sel == "5":
-        break
+HuvudMenyInput()
 
 with open("spelare.txt", "w") as f:
     for namn in lista:
