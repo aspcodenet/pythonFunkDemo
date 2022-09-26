@@ -1,69 +1,26 @@
 #Write a program that joins two text files and records the results in a third file. PS:
 #first delete the third file if if already exists!
 
-fil1 = "spelare.txt"
-fil2 = "spelare2.txt"
-resultFile = "total.txt"
+# player ska ha jerseyNumber, namn, Teamname
+# player = namn
 
-with open(resultFile, "w") as resultFile:
-    with open(fil1, "r") as fil1:
-        for raden in fil1:
-            resultFile.write(  raden.replace("\n", "") + "\n")            
-    with open(fil2, "r") as fil2:
-        for raden in fil2:
-            resultFile.write(raden.replace("\n", "") + "\n")            
+from dataclasses import dataclass
 
-print("sdffssd")
-
-# Läs in alla spelare
-with open("spelare.txt", "r") as filen:
-    isOnOddLine = True
-    for raden in filen:
-        if isOnOddLine:
-            print(raden)
-        # isOnOddLine = not isOnOddLine
-        if isOnOddLine:
-            isOnOddLine = False
-        else:
-            isOnOddLine = True
-        
+@dataclass
+class Player:
+    Namn: str
+    JerseyNumber: int
+    Teamname: str
 
 
-x = 12
-if x > 10:
-    print("bla bl223a")
-print("234234")    
+# p2 = Player("Mats Sundin", 13, "Toronto")
+# p2.Teamname
+# l = []
+# l.append(p1)
+# .Teamname = "Tre Kronor"
+# print(p1.Namn)
+# print(p2.Namn)
 
-for x in range(0,5):
-    if x > 10:
-        print("sdfrsdsdffsd")
-    print(x)
-
-
-
-
-# anropa funktion från funktion
-# submeny och 4 = tillbaka till huvudmenyn
-
-# FUNKTION ett kodblock som vi ger ett namn
-# en funktion kan TA IN PARAMETRAR
-# return  
-
-# def calculateSalary(monthly, age):
-#     extra = 0
-#     if age > 65:
-#         extra = 1.1
-#     if age < 20:
-#         extra = 1.3
-#     salary = extra * monthly
-#     return salary
-
-
-# print("Innan")
-# lonen = calculateSalary(10000, 68)
-# alder = int(input("Ange ålder"))
-# lonen2 = calculateSalary(10000,alder )
-# print("Klar")
 
 def GetIntMenuInput(prompt, minValue, maxValue):
     while True:
@@ -79,17 +36,15 @@ def GetIntMenuInput(prompt, minValue, maxValue):
 
 
 def CreatePlayer(): # black box - kommer ut ut den så ska vi ha en ny player (namn - string)
-    while True:
-        namn = input("Ange namn:")
-        if len(namn) < 2 or len(namn) > 50:
-            print("Ange ett namn mellan 3 och 50 tecken")
-        else:
-            break
-    return namn
+    namn = input("Ange namn:")
+    team = input("Ange lag:")
+    jersey = int(input("Ange jersey:"))
+    player = Player(namn,jersey,team) 
+    return player
     
-def ListPlayers(listOfPlayers):    
-    for namn in listOfPlayers:
-        print(namn)
+def ListPlayers(listOfPlayers): 
+    for player in listOfPlayers:
+        print(f"{player.JerseyNumber} {player.Namn} {player.Teamname}")
 
 def DeletePlayer(listOfPlayer):
     index = 1
@@ -135,8 +90,8 @@ def HuvudMenyInput(lista):
         MenuPrint()
         sel = GetIntMenuInput("Ange val:", 1, 5)
         if sel == 1:
-            namn = CreatePlayer()
-            lista.append(namn)
+            player = CreatePlayer()
+            lista.append(player)
         if sel == 2:
             ListPlayers(lista)
         if sel == 4:
@@ -150,18 +105,40 @@ def HuvudMenyInput(lista):
 lista = []
 
 # Läs in alla spelare
-with open("spelare.txt", "r") as filen:
+with open("spelare-objekt.txt", "r") as filen:
+    counter = 0
     for raden in filen:
-        lista.append(raden.replace("\n", ""))
+        if counter == 0:
+            player = Player("",0,"")
+            lista.append(player)
+            player.Namn = raden.replace("\n", "")
+        if counter == 1:
+            player.JerseyNumber = int(raden.replace("\n", ""))
+        if counter == 2:
+            player.Teamname = raden.replace("\n", "")
+        counter = counter + 1
+        if counter == 3:
+            counter = 0
+
+        # f.write(player.Namn + "\n")
+        # f.write(str(player.JerseyNumber) + "\n")
+        # f.write(player.Teamname + "\n")
+
 
 
 
 
 HuvudMenyInput(lista)
+# class Player:
+#    Namn: str
+#    JerseyNumber: int
+#    Teamname: str
 
-with open("spelare.txt", "w") as f:
-    for namn in lista:
-        f.write(namn + "\n")
+with open("spelare-objekt.txt", "w") as f:
+    for player in lista:
+        f.write(player.Namn + "\n")
+        f.write(str(player.JerseyNumber) + "\n")
+        f.write(player.Teamname + "\n")
         
 
 # IDAG = ni får en funktion som ni kan använda i bankomat
@@ -315,3 +292,73 @@ def CalculateVat(pris, product):
         return pris * 0.12
     return pris * 0.25
 
+
+
+
+
+
+
+
+fil1 = "spelare.txt"
+fil2 = "spelare2.txt"
+resultFile = "total.txt"
+
+with open(resultFile, "w") as resultFile:
+    with open(fil1, "r") as fil1:
+        for raden in fil1:
+            resultFile.write(  raden.replace("\n", "") + "\n")            
+    with open(fil2, "r") as fil2:
+        for raden in fil2:
+            resultFile.write(raden.replace("\n", "") + "\n")            
+
+print("sdffssd")
+
+# Läs in alla spelare
+with open("spelare.txt", "r") as filen:
+    isOnOddLine = True
+    for raden in filen:
+        if isOnOddLine:
+            print(raden)
+        # isOnOddLine = not isOnOddLine
+        if isOnOddLine:
+            isOnOddLine = False
+        else:
+            isOnOddLine = True
+        
+
+
+x = 12
+if x > 10:
+    print("bla bl223a")
+print("234234")    
+
+for x in range(0,5):
+    if x > 10:
+        print("sdfrsdsdffsd")
+    print(x)
+
+
+
+
+# anropa funktion från funktion
+# submeny och 4 = tillbaka till huvudmenyn
+
+# FUNKTION ett kodblock som vi ger ett namn
+# en funktion kan TA IN PARAMETRAR
+# return  
+
+# def calculateSalary(monthly, age):
+#     extra = 0
+#     if age > 65:
+#         extra = 1.1
+#     if age < 20:
+#         extra = 1.3
+#     salary = extra * monthly
+#     return salary
+
+
+# print("Innan")
+# lonen = calculateSalary(10000, 68)
+# alder = int(input("Ange ålder"))
+# lonen2 = calculateSalary(10000,alder )
+# print("Klar")
