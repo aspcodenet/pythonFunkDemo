@@ -6,12 +6,14 @@
 
 from dataclasses import dataclass
 
+import jsonpickle
+
+
 @dataclass
 class Player:
     Namn: str
     JerseyNumber: int
     Teamname: str
-
 
 # p2 = Player("Mats Sundin", 13, "Toronto")
 # p2.Teamname
@@ -104,21 +106,25 @@ def HuvudMenyInput(lista):
 
 lista = []
 
-# Läs in alla spelare
 with open("spelare-objekt.txt", "r") as filen:
-    counter = 0
-    for raden in filen:
-        if counter == 0:
-            player = Player("",0,"")
-            lista.append(player)
-            player.Namn = raden.replace("\n", "")
-        if counter == 1:
-            player.JerseyNumber = int(raden.replace("\n", ""))
-        if counter == 2:
-            player.Teamname = raden.replace("\n", "")
-        counter = counter + 1
-        if counter == 3:
-            counter = 0
+    lista = jsonpickle.decode(filen.read())
+
+
+# # Läs in alla spelare
+# with open("spelare-objekt.txt", "r") as filen:
+#     counter = 0
+#     for raden in filen:
+#         if counter == 0:
+#             player = Player("",0,"")
+#             lista.append(player)
+#             player.Namn = raden.replace("\n", "")
+#         if counter == 1:
+#             player.JerseyNumber = int(raden.replace("\n", ""))
+#         if counter == 2:
+#             player.Teamname = raden.replace("\n", "")
+#         counter = counter + 1
+#         if counter == 3:
+#             counter = 0
 
         # f.write(player.Namn + "\n")
         # f.write(str(player.JerseyNumber) + "\n")
@@ -134,11 +140,15 @@ HuvudMenyInput(lista)
 #    JerseyNumber: int
 #    Teamname: str
 
+
 with open("spelare-objekt.txt", "w") as f:
-    for player in lista:
-        f.write(player.Namn + "\n")
-        f.write(str(player.JerseyNumber) + "\n")
-        f.write(player.Teamname + "\n")
+    f.write(jsonpickle.encode(lista))
+
+# with open("spelare-objekt.txt", "w") as f:
+#     for player in lista:
+#         f.write(player.Namn + "\n")
+#         f.write(str(player.JerseyNumber) + "\n")
+#         f.write(player.Teamname + "\n")
         
 
 # IDAG = ni får en funktion som ni kan använda i bankomat

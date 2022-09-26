@@ -1,6 +1,1 @@
-Stefan
-12
-test
-kalle
-11
-Test2
+[{"py/object": "__main__.Player", "Namn": "Foppa", "JerseyNumber": 21, "Teamname": "Colorado"}, {"py/object": "__main__.Player", "Namn": "kalle", "JerseyNumber": 13, "Teamname": "AAA"}]
