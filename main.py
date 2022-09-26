@@ -87,7 +87,13 @@ def MenuPrint():
     print("5. Avsluta")
 # ibland så returnerar INTE en funktion nånting
 
+
+def AddTwoNumbers(tal1:int, tal2:int) -> int:
+    return tal1 + tal2
+
 def HuvudMenyInput(lista):        
+    a = AddTwoNumbers()
+    n = GetIntMenuInput()
     while True:
         MenuPrint()
         sel = GetIntMenuInput("Ange val:", 1, 5)
